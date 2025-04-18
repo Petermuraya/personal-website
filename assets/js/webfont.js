@@ -1,201 +1,359 @@
-/*
- * Copyright 2016 Small Batch, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not
- * use this file except in compliance with the License. You may obtain a copy of
- * the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations under
- * the License.
+/**
+ * @module DOMUtils
+ * @description A comprehensive utility module for DOM manipulation, resource loading, and font management
  */
 
-(function() {
-    function aa(a, b, c) {
-        return a.call.apply(a.bind, arguments)
+// Feature detection constants
+const hasNativeBind = typeof Function.prototype.bind === 'function' && 
+                     /native code/.test(Function.prototype.bind.toString());
+const hasFontFaceAPI = typeof FontFace !== 'undefined';
+
+/**
+ * Creates a bound function with optional prepended arguments
+ * @param {Function} fn - The function to bind
+ * @param {Object} context - The context to bind to
+ * @param {...*} [partialArgs] - Arguments to prepend
+ * @returns {Function} The bound function
+ */
+function createBoundFunction(fn, context, ...partialArgs) {
+  if (typeof fn !== 'function') {
+    throw new TypeError('First argument must be a function');
+  }
+
+  if (partialArgs.length > 0) {
+    return function(...callArgs) {
+      return fn.apply(context, [...partialArgs, ...callArgs]);
+    };
+  }
+  
+  return function(...callArgs) {
+    return fn.apply(context, callArgs);
+  };
+}
+
+/**
+ * Cross-browser timestamp utility
+ * @returns {number} Current timestamp in milliseconds
+ */
+const getCurrentTimestamp = Date.now || (() => +new Date());
+
+/**
+ * Represents a document environment (main window or iframe)
+ */
+class DocumentEnvironment {
+  /**
+   * @param {Window} mainWindow - The main window reference
+   * @param {Window} [contentWindow] - The content window (for iframes)
+   */
+  constructor(mainWindow, contentWindow) {
+    this.mainWindow = mainWindow;
+    this.contentWindow = contentWindow || mainWindow;
+    this.document = this.contentWindow.document;
+  }
+
+  /**
+   * Gets the appropriate protocol (http: or https:)
+   * @returns {string} The protocol
+   */
+  get protocol() {
+    const { protocol } = this.contentWindow.location;
+    return protocol === 'about:' ? this.mainWindow.location.protocol : protocol;
+  }
+
+  /**
+   * Gets the hostname
+   * @returns {string} The hostname
+   */
+  get hostname() {
+    return this.contentWindow.location.hostname || this.mainWindow.location.hostname;
+  }
+}
+
+/**
+ * DOM element utilities
+ */
+class DOMUtils {
+  /**
+   * Creates an element with attributes and content
+   * @param {Document} document - The document object
+   * @param {string} tagName - The element tag name
+   * @param {Object} [attributes] - Element attributes
+   * @param {string} [textContent] - Text content
+   * @returns {HTMLElement} The created element
+   */
+  static createElement(document, tagName, attributes = {}, textContent = '') {
+    const element = document.createElement(tagName);
+
+    Object.entries(attributes).forEach(([name, value]) => {
+      if (name === 'style' && typeof value === 'string') {
+        element.style.cssText = value;
+      } else {
+        element.setAttribute(name, value);
+      }
+    });
+
+    if (textContent) {
+      element.appendChild(document.createTextNode(textContent));
     }
 
-    function ba(a, b, c) {
-        if (!a) throw Error();
-        if (2 < arguments.length) {
-            var d = Array.prototype.slice.call(arguments, 2);
-            return function() {
-                var c = Array.prototype.slice.call(arguments);
-                Array.prototype.unshift.apply(c, d);
-                return a.apply(b, c)
-            }
+    return element;
+  }
+
+  /**
+   * Appends an element to a parent
+   * @param {Document} document - The document object
+   * @param {string} parentTag - The parent tag name
+   * @param {HTMLElement} element - The element to append
+   */
+  static appendElement(document, parentTag, element) {
+    const parent = document.getElementsByTagName(parentTag)[0] || 
+                   document.documentElement;
+    parent.insertBefore(element, parent.lastChild);
+  }
+
+  /**
+   * Removes an element from the DOM
+   * @param {HTMLElement} element - The element to remove
+   */
+  static removeElement(element) {
+    element.parentNode?.removeChild(element);
+  }
+
+  /**
+   * Manages element classes
+   */
+  static classList = {
+    /**
+     * Adds and removes classes from an element
+     * @param {HTMLElement} element - The target element
+     * @param {string[]} [classesToAdd] - Classes to add
+     * @param {string[]} [classesToRemove] - Classes to remove
+     */
+    update(element, classesToAdd = [], classesToRemove = []) {
+      const currentClasses = new Set(element.className.split(/\s+/));
+      
+      classesToAdd.forEach(className => currentClasses.add(className));
+      classesToRemove.forEach(className => currentClasses.delete(className));
+      
+      element.className = Array.from(currentClasses)
+        .filter(Boolean)
+        .join(' ')
+        .trim();
+    },
+
+    /**
+     * Checks if an element has a class
+     * @param {HTMLElement} element - The target element
+     * @param {string} className - The class to check
+     * @returns {boolean}
+     */
+    has(element, className) {
+      return element.className.split(/\s+/).includes(className);
+    }
+  };
+}
+
+/**
+ * Resource loader for scripts and stylesheets
+ */
+class ResourceLoader {
+  /**
+   * Loads a stylesheet
+   * @param {DocumentEnvironment} env - Document environment
+   * @param {string} url - Stylesheet URL
+   * @param {Function} [callback] - Completion callback
+   */
+  static loadStylesheet(env, url, callback) {
+    const link = DOMUtils.createElement(env.document, 'link', {
+      rel: 'stylesheet',
+      href: url,
+      media: 'all'
+    });
+
+    if (hasFontFaceAPI) {
+      let isComplete = false;
+
+      link.onload = () => {
+        if (!isComplete) {
+          isComplete = true;
+          callback?.(null);
         }
-        return function() {
-            return a.apply(b, arguments)
+      };
+
+      link.onerror = () => {
+        if (!isComplete) {
+          isComplete = true;
+          callback?.(new Error(`Stylesheet failed to load: ${url}`));
         }
+      };
+    } else {
+      setTimeout(() => callback?.(null), 0);
     }
 
-    function p(a, b, c) {
-        p = Function.prototype.bind && -1 != Function.prototype.bind.toString().indexOf("native code") ? aa : ba;
-        return p.apply(null, arguments)
-    }
+    DOMUtils.appendElement(env.document, 'head', link);
+  }
 
-    var q = Date.now || function() {
-        return +new Date
+  /**
+   * Loads a script with timeout
+   * @param {DocumentEnvironment} env - Document environment
+   * @param {string} url - Script URL
+   * @param {Function} [callback] - Completion callback
+   * @param {number} [timeout=5000] - Timeout in ms
+   * @returns {HTMLScriptElement} The script element
+   */
+  static loadScript(env, url, callback, timeout = 5000) {
+    const head = env.document.getElementsByTagName('head')[0];
+    if (!head) return null;
+
+    const script = DOMUtils.createElement(env.document, 'script', { src: url });
+    let isLoaded = false;
+
+    const cleanup = () => {
+      script.onload = script.onerror = script.onreadystatechange = null;
+      if (script.parentNode === head) {
+        head.removeChild(script);
+      }
     };
 
-    function ca(a, b) {
-        this.a = a;
-        this.m = b || a;
-        this.c = this.m.document
-    }
-    var da = !!window.FontFace;
-
-    function t(a, b, c, d) {
-        b = a.c.createElement(b);
-        if (c)
-            for (var e in c) c.hasOwnProperty(e) && ("style" == e ? b.style.cssText = c[e] : b.setAttribute(e, c[e]));
-        d && b.appendChild(a.c.createTextNode(d));
-        return b
-    }
-
-    function u(a, b, c) {
-        a = a.c.getElementsByTagName(b)[0];
-        a || (a = document.documentElement);
-        a.insertBefore(c, a.lastChild)
-    }
-
-    function v(a) {
-        a.parentNode && a.parentNode.removeChild(a)
-    }
-
-    function w(a, b, c) {
-        b = b || [];
-        c = c || [];
-        for (var d = a.className.split(/\s+/), e = 0; e < b.length; e += 1) {
-            for (var f = !1, g = 0; g < d.length; g += 1)
-                if (b[e] === d[g]) {
-                    f = !0;
-                    break
-                }
-            f || d.push(b[e])
-        }
-        b = [];
-        for (e = 0; e < d.length; e += 1) {
-            f = !1;
-            for (g = 0; g < c.length; g += 1)
-                if (d[e] === c[g]) {
-                    f = !0;
-                    break
-                }
-            f || b.push(d[e])
-        }
-        a.className = b.join(" ").replace(/\s+/g, " ").replace(/^\s+|\s+$/, "")
-    }
-
-    function y(a, b) {
-        for (var c = a.className.split(/\s+/), d = 0; d < c.length; d++)
-            if (c[d] == b) return !0;
-        return !1
-    }
-
-    function z(a) {
-        if ("string" === typeof a.f) return a.f;
-        var b = a.m.location.protocol;
-        "about:" == b && (b = a.a.location.protocol);
-        return "https:" == b ? "https:" : "http:"
-    }
-
-    function ea(a) {
-        return a.m.location.hostname || a.a.location.hostname
-    }
-
-    function A(a, b, c) {
-        function d() {
-            k && e && f && (k(g), k = null)
-        }
-        b = t(a, "link", {
-            rel: "stylesheet",
-            href: b,
-            media: "all"
-        });
-        var e = !1,
-            f = !0,
-            g = null,
-            k = c || null;
-        da ? (b.onload = function() {
-            e = !0;
-            d()
-        }, b.onerror = function() {
-            e = !0;
-            g = Error("Stylesheet failed to load");
-            d()
-        }) : setTimeout(function() {
-            e = !0;
-            d()
-        }, 0);
-        u(a, "head", b)
-    }
-
-    function B(a, b, c, d) {
-        var e = a.c.getElementsByTagName("head")[0];
-        if (e) {
-            var f = t(a, "script", {
-                src: b
-            }),
-                g = !1;
-            f.onload = f.onreadystatechange = function() {
-                g || this.readyState && "loaded" != this.readyState && "complete" != this.readyState || (g = !0, c && c(null), f.onload = f.onreadystatechange = null, "HEAD" == f.parentNode.tagName && e.removeChild(f))
-            };
-            e.appendChild(f);
-            setTimeout(function() {
-                g || (g = !0, c && c(Error("Script load timeout")))
-            }, d || 5E3);
-            return f
-        }
-        return null
+    const done = (error = null) => {
+      if (!isLoaded) {
+        isLoaded = true;
+        cleanup();
+        callback?.(error);
+      }
     };
 
-    function C() {
-        this.a = 0;
-        this.c = null
-    }
-
-    function D(a) {
-        a.a++;
-        return function() {
-            a.a--;
-            E(a)
-        }
-    }
-
-    function F(a, b) {
-        a.c = b;
-        E(a)
-    }
-
-    function E(a) {
-        0 == a.a && a.c && (a.c(), a.c = null)
+    script.onload = done;
+    script.onerror = () => done(new Error(`Script load failed: ${url}`));
+    script.onreadystatechange = () => {
+      if (/^(complete|loaded)$/.test(script.readyState)) {
+        done();
+      }
     };
 
-    function G(a) {
-        this.a = a || "-"
-    }
-    G.prototype.c = function(a) {
-        for (var b = [], c = 0; c < arguments.length; c++) b.push(arguments[c].replace(/[\W_]+/g, "").toLowerCase());
-        return b.join(this.a)
+    head.appendChild(script);
+    setTimeout(() => done(new Error(`Script load timeout: ${url}`)), timeout);
+
+    return script;
+  }
+}
+
+/**
+ * Tracks asynchronous operations
+ */
+class AsyncOperationTracker {
+  constructor() {
+    this.pendingCount = 0;
+    this.completionCallback = null;
+  }
+
+  /**
+   * Starts tracking an operation
+   * @returns {Function} A function to call when the operation completes
+   */
+  beginOperation() {
+    this.pendingCount++;
+    let called = false;
+
+    return () => {
+      if (!called) {
+        called = true;
+        this.pendingCount--;
+        this.checkCompletion();
+      }
     };
+  }
 
-    function H(a, b) {
-        this.c = a;
-        this.f = 4;
-        this.a = "n";
-        var c = (b || "n4").match(/^([nio])([1-9])$/i);
-        c && (this.a = c[1], this.f = parseInt(c[2], 10))
+  /**
+   * Sets the completion callback
+   * @param {Function} callback - Called when all operations complete
+   */
+  setCompletionCallback(callback) {
+    this.completionCallback = callback;
+    this.checkCompletion();
+  }
+
+  checkCompletion() {
+    if (this.pendingCount === 0 && this.completionCallback) {
+      this.completionCallback();
+      this.completionCallback = null;
     }
+  }
+}
 
-    function fa(a) {
-        return I(a) + " " + (a.f + "00") + " 300px " + J(a.c)
-    }
+/**
+ * Normalizes strings for consistent naming
+ */
+class StringNormalizer {
+  /**
+   * @param {string} [separator='-'] - Word separator
+   */
+  constructor(separator = '-') {
+    this.separator = separator;
+  }
 
-    function J(a) {
-        var b
+  /**
+   * Normalizes strings to lowercase with separator
+   * @param {...string} strings - Strings to normalize
+   * @returns {string} The normalized string
+   */
+  normalize(...strings) {
+    return strings
+      .map(s => s.replace(/[\W_]+/g, '').toLowerCase())
+      .filter(Boolean)
+      .join(this.separator);
+  }
+}
+
+/**
+ * Represents a font variant
+ */
+class FontVariant {
+  /**
+   * @param {string} family - Font family name
+   * @param {string} [variant='n4'] - Variant string (format [nio][1-9])
+   */
+  constructor(family, variant = 'n4') {
+    this.family = family;
+    const match = variant.match(/^([nio])([1-9])$/i);
+    
+    this.style = match?.[1]?.toLowerCase() || 'n';
+    this.weight = match?.[2] ? parseInt(match[2], 10) : 4;
+  }
+
+  /**
+   * Generates CSS @font-face declaration
+   * @returns {string} The CSS string
+   */
+  toCSS() {
+    return `${this.style} ${this.weight}00 300px ${this.family}`;
+  }
+
+  /**
+   * Gets the font family string
+   * @returns {string}
+   */
+  get familyString() {
+    // Additional processing could be added here
+    return this.family;
+  }
+}
+
+// Export the API
+const DOMUtilities = {
+  bind: hasNativeBind ? Function.prototype.bind : createBoundFunction,
+  getTimestamp: getCurrentTimestamp,
+  DocumentEnvironment,
+  DOMUtils,
+  ResourceLoader,
+  AsyncOperationTracker,
+  StringNormalizer,
+  FontVariant
+};
+
+// Export for different environments
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = DOMUtilities;
+} else if (typeof window !== 'undefined') {
+  window.DOMUtilities = DOMUtilities;
+}
