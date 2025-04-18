@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;600&display=swap');
+
+
+.muraya-hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+  background: radial-gradient(circle at top center, #1a1a1a 0%, #0b0b0d 100%);
+  animation: bgFade 3s ease-in-out forwards;
+}
+
+.muraya-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  margin: 0;
+  display: flex;
+  gap: 0.15em;
+  color: #fff;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+}
+
+.muraya-title span,
+.muraya-subtitle span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px) scale(0.9);
+  animation: popIn 0.7s forwards cubic-bezier(0.23, 1, 0.32, 1);
+  color: #ffffff;
+  text-shadow: 0 0 5px #ffffff22, 0 0 10px #ffffff44;
+  position: relative;
+  transition: all 0.4s ease-in-out;
+}
+
+.muraya-title span:hover {
+  color: #ffffff;
+  text-shadow:
+    0 0 10px #ffffff,
+    0 0 20px #ffffff,
+    0 0 30px #ffffff,
+    0 0 40px #007cf0,
+    0 0 70px #007cf0;
+  animation: shine 2s infinite linear;
+}
+
+.muraya-title span:nth-child(1) { animation-delay: 0.1s; }
+.muraya-title span:nth-child(2) { animation-delay: 0.2s; }
+.muraya-title span:nth-child(3) { animation-delay: 0.3s; }
+.muraya-title span:nth-child(4) { animation-delay: 0.4s; }
+.muraya-title span:nth-child(5) { animation-delay: 0.5s; }
+.muraya-title span:nth-child(6) { animation-delay: 0.6s; }
+
+.muraya-subtitle {
+  font-size: clamp(1.25rem, 5vw, 2rem);
+  font-weight: 400;
+  letter-spacing: 0.25em;
+  color: #e0e0e0;
+  margin-top: 0.75rem;
+  display: flex;
+  gap: 0.1em;
+}
+
+.muraya-subtitle span:nth-child(1) { animation-delay: 0.7s; }
+.muraya-subtitle span:nth-child(2) { animation-delay: 0.8s; }
+.muraya-subtitle span:nth-child(3) { animation-delay: 0.9s; }
+.muraya-subtitle span:nth-child(4) { animation-delay: 1.0s; }
+.muraya-subtitle span:nth-child(5) { animation-delay: 1.1s; }
+.muraya-subtitle span:nth-child(6) { animation-delay: 1.2s; }
+.muraya-subtitle span:nth-child(7) { animation-delay: 1.3s; }
+
+@keyframes popIn {
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes bgFade {
+  0% {
+    background: #000;
+  }
+  100% {
+    background: radial-gradient(circle at top center, #1a1a1a 0%, #0b0b0d 100%);
+  }
+}
+
+@keyframes shine {
+  0% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+  }
+  50% {
+    text-shadow: 0 0 20px #fff, 0 0 40px #0ff, 0 0 60px #0ff;
+  }
+  100% {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff;
+  }
+}
+
+@keyframes loopPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.9;
+  }
+}
+
+/* Scroll reveal setup (you can add this with JS lib like AOS or use this fade when in view) */
+.muraya-hero {
+  animation: fadeInScroll 1s ease-in-out forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInScroll {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loop animation after delay */
+.muraya-title span {
+  animation: popIn 0.7s forwards cubic-bezier(0.23, 1, 0.32, 1), loopPulse 3s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
