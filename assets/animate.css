@@ -130,3 +130,90 @@
   animation: popIn 0.7s forwards cubic-bezier(0.23, 1, 0.32, 1), loopPulse 3s ease-in-out infinite;
   animation-delay: var(--delay);
 }
+.parallax-bg {
+  background-attachment: fixed;
+  will-change: transform;
+  transform: translateZ(0);
+}
+/* === Hero Section Animation Styles === */
+.fade-loop {
+  animation: fadeName 4s infinite ease-in-out;
+}
+
+@keyframes fadeName {
+  0%, 30% {
+    opacity: 1;
+  }
+  45%, 75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #facc15;
+  animation: typingText 6s steps(70, end) 1 forwards;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.typing::after {
+  content: '';
+  animation: blink 0.8s infinite steps(1);
+}
+
+@keyframes typingText {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #facc15; }
+}
+
+/* === Smooth Scroll === */
+html {
+  scroll-behavior: smooth;
+}
+.fade-loop {
+  animation: fadeName 4s infinite ease-in-out;
+}
+
+@keyframes fadeName {
+  0%, 30% { opacity: 1; }
+  45%, 75% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 2px solid #facc15;
+  animation: typingText 6s steps(80, end) 1 forwards;
+  display: inline-block;
+  max-width: 100%;
+}
+
+.typing::after {
+  content: '';
+  animation: blink 0.8s infinite steps(1);
+}
+
+@keyframes typingText {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #facc15; }
+}
+
+html {
+  scroll-behavior: smooth;
+}

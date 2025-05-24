@@ -44,6 +44,17 @@
       <script src="assets/js/webfont.js" type="text/javascript"></script><script type="text/javascript">WebFont.load({  google: {    families: ["Manrope:200,300,regular,500,600,700,800","Italiana:regular"]  }});</script><!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif]--><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script>
       <link href="assets/img/jopecurofav.png" rel="shortcut icon" type="image/x-icon"/>
       <link href="assets/img/jopecurofav.png" rel="apple-touch-icon"/>
+      <!-- AOS Library -->
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+  AOS.init({
+    once: true, // animate only once
+    duration: 1200,
+    easing: 'ease-in-out',
+  });
+</script>
+
       <!-- Please keep this css code to improve the font quality-->
       <style>
          * {
@@ -167,181 +178,209 @@
                </div>
             </div>
          </div>
+
+
+
+
          <section id="About" class="relative overflow-hidden text-white bg-gradient-to-b from-gray-800 via-gray-900 to-black py-32 sm:py-40 lg:py-48">
             <!-- Background Image -->
-            <div class="absolute inset-0 z-0 bg-cover bg-center opacity-30" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');"></div>
+            <div class="absolute inset-0 z-0 bg-cover bg-center opacity-20 scale-105 blur-sm" style="background-image: url('https://images.unsplash.com/photo-1504384308090-c894fdcc538d');"></div>
           
             <!-- Overlay -->
-            <div class="absolute inset-0 z-0 bg-black bg-opacity-40 backdrop-blur-sm"></div>
+            <div class="absolute inset-0 z-0 bg-black bg-opacity-50 backdrop-blur-sm"></div>
           
             <!-- Content Wrapper -->
             <div class="relative z-10 container mx-auto text-center px-6 sm:px-10 lg:px-16">
               <!-- Heading -->
               <div data-aos="fade-up" data-aos-delay="100">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-widest mb-4">Welcome</h1>
-                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 tracking-wide font-serif italic">To My World of Innovation</h2>
-                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto">
-                  I’m <strong class="text-yellow-400">Peter Muraya</strong> — an IoT & Cloud Solutions Developer, Data Scientist, and Innovator. I build impactful systems using AI, cloud infrastructure, and smart sensors to solve challenges in healthcare, agriculture, and tech-for-good initiatives.
-                </p>
+                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold uppercase tracking-widest mb-4">
+                  Hello, <span class="text-yellow-400">Welcome</span>
+                </h1>
+                <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 tracking-wide font-serif italic text-gray-100">
+                  To My World of Intelligent Innovation
+                </h2>
+                <p class="text-lg sm:text-xl lg:text-2xl leading-relaxed max-w-4xl mx-auto text-gray-300 font-light">
+                  I'm 
+                  <strong class="text-yellow-400 fade-loop font-semibold">Peter Muraya</strong>, 
+                  <span class="typing">
+                    an IoT & Cloud Solutions Developer, Data-Driven Innovator, and Founder of 
+                    <a href="https://akiliedgesolutions.co.ke" class="underline text-yellow-300 hover:text-yellow-400 transition duration-300">Akili Edge Solutions</a>. 
+                    I build intelligent, human-centered systems that leverage AI, real-time data, and the power of the cloud to solve real-world problems in agriculture, healthcare, and sustainability.
+                  </span>
+                </p>                
               </div>
           
               <!-- Highlights -->
-              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-14 text-left max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="300">
+              <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 mt-20 text-left max-w-5xl mx-auto" data-aos="fade-up" data-aos-delay="300">
                 <div class="p-6 bg-gray-800/60 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 backdrop-blur">
-                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">AI & Data Science</h3>
-                  <p class="text-base leading-relaxed">Specialized in ML, NLP, and computer vision with tools like TensorFlow, PyTorch, and Scikit-learn.</p>
+                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">AI & Intelligent Systems</h3>
+                  <p class="text-base leading-relaxed text-gray-300">Built AI solutions like TB diagnostics and coffee grading robots using TensorFlow, PyTorch, and computer vision.</p>
                 </div>
           
                 <div class="p-6 bg-gray-800/60 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 backdrop-blur">
-                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">IoT & Cloud</h3>
-                  <p class="text-base leading-relaxed">Designed sensor-based systems for smart farming, health monitoring, and connected devices using Azure and MQTT.</p>
+                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">IoT & Real-Time Monitoring</h3>
+                  <p class="text-base leading-relaxed text-gray-300">Developed sensor-based systems like Remote Farm and Kifaru Guardians with Azure IoT, MQTT, and Firebase.</p>
                 </div>
           
                 <div class="p-6 bg-gray-800/60 rounded-2xl shadow-xl hover:shadow-2xl transition transform hover:scale-105 backdrop-blur">
-                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">Tech for Good</h3>
-                  <p class="text-base leading-relaxed">Founder of <a href="https://akiliedgesolutions.co.ke" class="underline hover:text-yellow-300">Akili Edge Solutions</a>, recognized for award-winning innovations like Remote Farm and AI TB Diagnostics.</p>
+                  <h3 class="text-xl font-semibold text-yellow-400 mb-2">Cloud & Scalable Solutions</h3>
+                  <p class="text-base leading-relaxed text-gray-300">Expert in building scalable, ISO-compliant platforms using FastAPI, TimescaleDB, and Grafana dashboards.</p>
                 </div>
               </div>
           
               <!-- Call to Action -->
-              <div class="mt-14" data-aos="zoom-in" data-aos-delay="600">
-                <a href="#Contact" class="inline-block px-10 py-4 bg-gradient-to-r from-yellow-400 to-red-500 text-lg font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">Get in Touch</a>
+              <div class="mt-16" data-aos="zoom-in" data-aos-delay="600">
+                <a href="#Contact" class="inline-block px-10 py-4 bg-gradient-to-r from-yellow-400 to-red-500 text-lg font-bold rounded-full shadow-xl hover:scale-105 transition-all duration-300 ease-in-out">
+                  Get in Touch
+                </a>
               </div>
             </div>
           </section>
+          
                    
           
 
          <div class="about-section-second wf-section">
-            <div class="w-layout-grid grid-2-columns">
-               <div id="w-node-_36db900c-06f9-caf1-582d-3cf57b0166b5-01cc2440" class="sticky-column is-tabler-static">
-                  <div data-poster-url="assets/img/jopecuro.jpg" data-video-urls="assets/img/jopecuro.jpg" data-autoplay="true" data-loop="true" data-wf-ignore="true" class="background-video w-background-video w-background-video-atom">
-                     <video id="91fdd3f3-c79b-30b4-e454-2294ce4e64ca-video" autoplay loop muted playsinline style="object-fit: cover; background-image: url('https://jopecuro.com/assets/img/jopecuro.jpg');" data-wf-ignore="true">
-                        <source src="assets/img/jopecuro.mp4" type="video/mp4" data-wf-ignore="true"/>
-                        <source src="assets/img/jopecuro.webm" type="video/webm" data-wf-ignore="true"/>
-                        Your browser does not support the video tag.
-                    </video>                    
-                     <noscript>
-                        <style>
-                           [data-wf-bgvideo-fallback-img] {
-                           display: none;
-                           }
-                           @media (prefers-reduced-motion: reduce) {
-                           [data-wf-bgvideo-fallback-img] {
-                           position: absolute;
-                           z-index: -100;
-                           display: inline-block;
-                           height: 100%;
-                           width: 100%;
-                           object-fit: cover;
-                           }
-                           }
-                        </style>
-                        <img data-wf-bgvideo-fallback-img="true" src="assets/img/video_jopecuro.jpg" alt=""/>
-                     </noscript>
-                  </div>
-               </div>
-               <div class="div-block">
-                  <div data-w-id="b70de856-43d8-28b9-9911-24ceff91de40" class="column background-color-gray padding-horizontal padding-custom2">
-                     <div class="container-text">
-                        <div class="first-block">
-                           <div class="overflow-hidden">
-                              <div data-w-id="81793999-30d2-2c54-cbd2-876e3632087b" class="about-paragraph secondary-font text-style-all-caps">I'm peter muraya ndungu</div>
-                           </div>
-                           <div class="overflow-hidden margin-vertical margin-custom2">
-                              <h3 data-w-id="8a719302-7d8a-2542-b2cd-94d71cd92477" class="bout-heading text-style-all-caps">Creative Designer, data scientist, artificial intelligece & EATIS Young GIANT.</h3>
-                           </div>
-                           <div class="overflow-hidden">
-                              <p data-w-id="52d80ddd-06e8-e2ce-16c4-66ddfa2a805d" class="about-paragraph secondary-font">As a Creative designer,data science egineer,artificial intelligece expert, I have accumulated experience crafting visually stunning and engaging digital experiences and AI system With a passion for design and a keen eye for detail, I specialize in translating complex ideas into simple, elegant solutions that capture the essence of a brand.</p>
-                           </div>
-                        </div>
-                        <div data-w-id="e58f7af9-4c2c-682f-a716-033d9723e7bf" class="third-block">
-                           <div class="overflow-hidden">
-                              <div data-w-id="e58f7af9-4c2c-682f-a716-033d9723e7c1" class="about-paragraph secondary-font text-style-all-caps">Creating lasting value </div>
-                           </div>
-                           <div class="overflow-hidden margin-vertical margin-custom2">
-                              <h3 data-w-id="e58f7af9-4c2c-682f-a716-033d9723e7c6" class="bout-heading text-style-all-caps">Dedicated to purposeful design reflecting client goals/values</h3>
-                           </div>
-                           <div class="overflow-hidden">
-                              <p data-w-id="e58f7af9-4c2c-682f-a716-033d9723e7c9" class="about-paragraph secondary-font">Throughout my career, I have worked on a wide range of projects, from creating compelling brand identities and marketing campaigns to designing intuitive user interfaces . Whether it's designing websites, apps, or other digital platforms.</p>
-                           </div>
-                        </div>
-                        <div data-w-id="e67b092d-b678-4958-559e-12869d0f64c4" class="second-block">
-                           <div class="overflow-hidden">
-                              <div data-w-id="e67b092d-b678-4958-559e-12869d0f64c6" class="about-paragraph secondary-font text-style-all-caps">academic journey</div>
-                           </div>
-                           <div class="overflow-hidden margin-vertical margin-custom2">
-                              <h3 data-w-id="e67b092d-b678-4958-559e-12869d0f64cb" class="bout-heading text-style-all-caps">roller coaster of challenges and triumphs</h3>
-                           </div>
-                           <div class="overflow-hidden">
-                              <p data-w-id="e67b092d-b678-4958-559e-12869d0f64ce" class="about-paragraph secondary-font">
-                                 bsc<br>information - Data science
-                                 <br>Master - E-commerce <br>Licenciate - Design</p>
-                           </div>
-                        </div>
-                     </div>
-                  </div>
-                  <div data-w-id="34075572-2e51-8c60-a2e6-2b102e38dea9" class="column background-color-gray padding-horizontal padding-custom2 second">
-                     <div data-w-id="b6ffa7d1-6c58-17b2-818e-e08573c91e7d" class="about-paragraph secondary-font text-style-all-caps margin-bottom margin-small">Awards</div>
-                     <br>
-                     <h3 data-w-id="2314c30b-09e5-892c-6834-a3022a782ac3" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="bout-heading text-style-all-caps">recognitions</h3>
-                     <br>
-                     <div data-w-id="26253802-de7b-8384-7d1e-661631c0d2de" class="w-layout-grid awards-grid">
-                        <div id="w-node-f8916efd-736b-fb0f-fb7a-eb674f4c545a-01cc2440" class="text-size-regular secondary-font text-weight-light second">Year</div>
-                        <div id="w-node-_87ecbab6-f5ba-e100-9582-8c7f2c3ec326-01cc2440" class="text-size-regular secondary-font text-weight-light second">EATIS AFRICA</div>
-                        <div id="w-node-b6e78d01-ec8f-e277-a702-abc0448386e0-01cc2440" class="text-size-regular secondary-font text-weight-light second">Award</div>
-                        <div class="text second opacity-0">→</div>
-                     </div>
-                     <a href="assets/awards/certificate.pdf" target="_blank">
-                     <div class="w-layout-grid awards-grid">
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b651-01cc2440" class="text-size-regular secondary-font text-weight-light">2023</div>
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b653-01cc2440" class="text-size-regular secondary-font text-weight-light">EATIS</div>
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b655-01cc2440" class="text-size-regular secondary-font text-weight-light">Honors</div>
-                        <div class="text second">→</div>
-                     </div>
-                     </a>
-                     <a href="assets.pdf" target="_blank">
-                     <div class="w-layout-grid awards-grid">
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b651-01cc2440" class="text-size-regular secondary-font text-weight-light">2023</div>
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b653-01cc2440" class="text-size-regular secondary-font text-weight-light">EATIS AFRICA</div>
-                        <div id="w-node-d00f3de8-51df-6b13-a260-fc944f45b655-01cc2440" class="text-size-regular secondary-font text-weight-light">Merit</div>
-                        <div class="text second">→</div>
-                     </div>
-                     </a>
-                     <a href="https://www.linkedin.com/in/peter-muraya-507807269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
-                        <div class="w-layout-grid awards-grid">
-                        <div id="w-node-_9e1c7cda-ca8f-d218-3677-5786fe5f1ca2-01cc2440" class="text-size-regular secondary-font text-weight-light">2022</div>
-                        <div id="w-node-_9e1c7cda-ca8f-d218-3677-5786fe5f1ca4-01cc2440" class="text-size-regular secondary-font text-weight-light">karu innovation club</div>
-                        <div id="w-node-_9e1c7cda-ca8f-d218-3677-5786fe5f1ca6-01cc2440" class="text-size-regular secondary-font text-weight-light">Star</div>
-                        <div class="text second">→</div>
-                     </div>
-                     </a>
-                     <a href="https://scontent.fnbo8-1.fna.fbcdn.net/v/t39.30808-6/341322559_180824654883426_6530294609500251822_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFbabHufh1-F9wI9s8VNiSkjanHvryVj1KNqce-vJWPUj0hWqahm80h05Ejkywa00jY-piFOHZIk7oYp2cIf4hI&_nc_ohc=pCFJcPioO0QAX89YpSH&_nc_ht=scontent.fnbo8-1.fna&oh=00_AfDsU_0vEgYJ_E4dTbzwlZWLpfHVpi3bO7IWyHZFjjk_Zg&oe=6610B87C" target="_blank">
-                     <div class="w-layout-grid awards-grid">
-                        <div id="w-node-_187a2a34-da80-7c1e-0186-cc67be3b1151-01cc2440" class="text-size-regular secondary-font text-weight-light">2023</div>
-                        <div id="w-node-_187a2a34-da80-7c1e-0186-cc67be3b1153-01cc2440" class="text-size-regular secondary-font text-weight-light">dovelove</div>
-                        <div id="w-node-_187a2a34-da80-7c1e-0186-cc67be3b1155-01cc2440" class="text-size-regular secondary-font text-weight-light">Honorable</div>
-                        <div class="text second">→</div>
-                     </div>
-                     </a>
-                     <div>
-                        <br>
-                        <br>
-                        <a href="assets/files/José_Rocha_CV.pdf" target="_blank"><h4 class="hover-cursor vlt-btn__text">→ DOWNLOAD CV</h4></a></div>
-                  </div>
-               </div>
+  <div class="w-layout-grid grid-2-columns">
+
+    <!-- Video Section -->
+    <div class="sticky-column is-tabler-static">
+      <div class="background-video w-background-video w-background-video-atom" data-autoplay="true" data-loop="true" data-wf-ignore="true">
+        <video autoplay loop muted playsinline style="object-fit: cover; background-image: url('assets/img/jopecuro.jpg');" poster="assets/img/jopecuro.jpg">
+          <source src="assets/img/jopecuro.mp4" type="video/mp4">
+          <source src="assets/img/jopecuro.webm" type="video/webm">
+          Your browser does not support the video tag.
+        </video>
+        <noscript>
+          <style>
+            [data-wf-bgvideo-fallback-img] {
+              display: none;
+            }
+            @media (prefers-reduced-motion: reduce) {
+              [data-wf-bgvideo-fallback-img] {
+                position: absolute;
+                z-index: -100;
+                display: inline-block;
+                height: 100%;
+                width: 100%;
+                object-fit: cover;
+              }
+            }
+          </style>
+          <img data-wf-bgvideo-fallback-img="true" src="assets/img/video_jopecuro.jpg" alt="Fallback Image">
+        </noscript>
+      </div>
+    </div>
+
+    <!-- Text Content Section -->
+    <div class="div-block">
+
+      <!-- Personal Introduction -->
+      <div class="column background-color-gray padding-horizontal padding-custom2">
+        <div class="container-text">
+          <div class="first-block">
+            <div class="overflow-hidden">
+              <div class="about-paragraph secondary-font text-style-all-caps">I'm Peter Muraya Ndung'u</div>
             </div>
-         </div>
+            <div class="overflow-hidden margin-vertical margin-custom2">
+              <h3 class="bout-heading text-style-all-caps">Creative Designer, Data Scientist, AI Specialist & EATIS Young GIANT</h3>
+            </div>
+            <div class="overflow-hidden">
+              <p class="about-paragraph secondary-font">
+                As a Creative Designer, Data Scientist, and Artificial Intelligence expert, I have extensive experience crafting visually stunning, AI-driven digital experiences. I specialize in translating complex ideas into elegant, impactful solutions that capture a brand's essence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Value Proposition -->
+          <div class="third-block">
+            <div class="overflow-hidden">
+              <div class="about-paragraph secondary-font text-style-all-caps">Creating Lasting Value</div>
+            </div>
+            <div class="overflow-hidden margin-vertical margin-custom2">
+              <h3 class="bout-heading text-style-all-caps">Purposeful Designs Reflecting Client Goals</h3>
+            </div>
+            <div class="overflow-hidden">
+              <p class="about-paragraph secondary-font">
+                My portfolio spans compelling brand identities, engaging marketing campaigns, and intuitive user interfaces for websites, apps, and digital platforms — always aiming to deliver experiences that resonate.
+              </p>
+            </div>
+          </div>
+
+          <!-- Academic Journey -->
+          <div class="second-block">
+            <div class="overflow-hidden">
+              <div class="about-paragraph secondary-font text-style-all-caps">Academic Journey</div>
+            </div>
+            <div class="overflow-hidden margin-vertical margin-custom2">
+              <h3 class="bout-heading text-style-all-caps">A Roller Coaster of Challenges and Triumphs</h3>
+            </div>
+            <div class="overflow-hidden">
+              <p class="about-paragraph secondary-font">
+                BSc – Information Technology (Data Science)<br>
+                Master's – E-Commerce<br>
+                Licenciate – Design
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Awards Section -->
+      <div class="column background-color-gray padding-horizontal padding-custom2 second">
+        <div class="about-paragraph secondary-font text-style-all-caps margin-bottom margin-small">Awards</div>
+        <h3 class="bout-heading text-style-all-caps">Recognitions</h3>
+        <div class="w-layout-grid awards-grid">
+          <div class="text-size-regular secondary-font text-weight-light second">Year</div>
+          <div class="text-size-regular secondary-font text-weight-light second">Award Body</div>
+          <div class="text-size-regular secondary-font text-weight-light second">Title</div>
+          <div class="text second opacity-0">→</div>
+        </div>
+
+        <a href="assets/awards/certificate.pdf" target="_blank">
+          <div class="w-layout-grid awards-grid">
+            <div class="text-size-regular secondary-font text-weight-light">2023</div>
+            <div class="text-size-regular secondary-font text-weight-light">EATIS</div>
+            <div class="text-size-regular secondary-font text-weight-light">Honors</div>
+            <div class="text second">→</div>
+          </div>
+        </a>
+
+        <a href="assets.pdf" target="_blank">
+          <div class="w-layout-grid awards-grid">
+            <div class="text-size-regular secondary-font text-weight-light">2023</div>
+            <div class="text-size-regular secondary-font text-weight-light">EATIS Africa</div>
+            <div class="text-size-regular secondary-font text-weight-light">Merit</div>
+            <div class="text second">→</div>
+          </div>
+        </a>
+
+        <a href="https://www.linkedin.com/in/peter-muraya-507807269?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">
+          <div class="w-layout-grid awards-grid">
+            <div class="text-size-regular secondary-font text-weight-light">2022</div>
+            <div class="text-size-regular secondary-font text-weight-light">LinkedIn</div>
+            <div class="text-size-regular secondary-font text-weight-light">Featured Profile</div>
+            <div class="text second">→</div>
+          </div>
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
          <section id="Services" class="services-section wf-section">
             <div class="row display-flex-horizontal left second">
                <div class="point"></div>
-               <h2 data-w-id="14290a78-6420-757d-7a66-d3aa5e5f4da5" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">we work</h2>
+               <h2 data-w-id="14290a78-6420-757d-7a66-d3aa5e5f4da5" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">I work</h2>
             </div>
             <div class="row display-flex-horizontal left overflow-hidden">
-               <h2 data-w-id="5261ee80-a102-e8c3-1b22-605577e8349c" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">to give </h2>
+               <h2 data-w-id="5261ee80-a102-e8c3-1b22-605577e8349c" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">To give </h2>
             </div>
             <div class="row display-flex-horizontal left overflow-hidden">
-               <h2 data-w-id="126cdd51-5168-f797-d947-c532751d339b" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second"> our customers </h2>
+               <h2 data-w-id="126cdd51-5168-f797-d947-c532751d339b" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">My customers </h2>
             </div>
             <div class="row display-flex-horizontal left second overflow-hidden">
                <h2 data-w-id="b8abc30a-7c93-cc78-92b8-c2b4e3302591" class="heading-large secondary-font text-style-all-caps second italic">exceptional</h2>
@@ -350,7 +389,7 @@
                <h2 data-w-id="34c154f8-8cc5-0434-6066-4bfb87584be2" class="heading-large secondary-font text-style-all-caps second italic absolute">memorable</h2>
             </div><h2 data-w-id="b8abc30a-7c93-cc78-92b8-c2b4e3302591" class="heading-large secondary-font text-style-all-caps second italic">extra ordinary</h2>
             <h2 data-w-id="b8abc30a-7c93-cc78-92b8-c2b4e3302591" class="heading-large secondary-font text-style-all-caps second italic">fantastic</h2>
-            <h2 data-w-id="b8abc30a-7c93-cc78-92b8-c2b4e3302591" class="heading-large secondary-font text-style-all-caps second italic">creativity</h2>
+            
             <div class="row display-flex-horizontal left overflow-hidden">
                <h2 data-w-id="7fd96069-f21c-fba1-d837-da6f56cf9fef" style="-webkit-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 100%, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0)" class="heading-large secondary-font text-style-all-caps second">experiences</h2>
             </div>

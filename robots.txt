@@ -1,0 +1,34 @@
+# robots.txt for https://www.yourdomain.com/
+# Generated on 2025-05-15 by Sammy Peter
+
+# ============================================================
+# General Settings
+# ============================================================
+
+# Allow all web crawlers full access
+User-agent: *
+Disallow:
+
+# Optional: Set a crawl delay to manage server load (in seconds)
+# Uncomment the line below if needed
+# Crawl-delay: 10
+
+# ============================================================
+# Optional: Disallow Specific Directories or Pages
+# ============================================================
+
+# Example restrictions — uncomment as needed
+# Disallow: /admin/
+# Disallow: /private/
+# Disallow: /drafts/
+# Disallow: /hidden-page.html
+
+# ============================================================
+# Sitemap Location
+# ============================================================
+
+Sitemap: https://www.yourdomain.com/sitemap.xml
+
+# ============================================================
+# End of robots.txt
+# ============================================================
